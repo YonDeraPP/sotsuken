@@ -19,4 +19,3 @@ for i in xrange(120):
         cv2.imshow('image',image)
         cv2.waitKey(16)
         stream.seek(0)
-        
