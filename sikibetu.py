@@ -31,11 +31,9 @@ for i in xrange(10):
     if len(facerect) > 0:
         for rect in facerect:
             cv2.rectangle(image_output, tuple(rect[0:2]), tuple(rect[0:2] + rect[2:4]), color, thickness=2)
-        print
-        "found"
+        print "found."
     cv2.imshow('image_out', image_output)
     cv2.waitKey(16)
 
     stream.seek(0)
-    print
-    "captured %d" % (i)
+    print "captured %d" % (i)
