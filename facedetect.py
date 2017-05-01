@@ -4,22 +4,22 @@ import cv2
 
 import numpy as np
 
-# 正面の顔の情報データ
+
 cascade_path = "/ usr / share / opencv / haarcascades / haarcascade_frontalface_alt.xml"
 cascade = cv2.CascadeClassifier(cascade_path)
 
 stream = io.BytesIO()
 
-# カメラの解像度を設定
+
 CAMERA_WIDTH = 320
 CAMERA_HEIGHT = 240
 
-#
+
 color = (255, 255, 255)
 camera = picamera.PiCamera()
 camera.resolution = (CAMERA_WIDTH, CAMERA_HEIGHT)
 
-# カメラで何回写真を取るかのループ
+
 for i in xrange(5):
     # 写真を撮る！
     camera.capture(stream, format='jpeg')
