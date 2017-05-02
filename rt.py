@@ -1,16 +1,18 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import io
 import picamera
 import cv2
 
 import numpy as np
 
-cascade_path = "/usr/share/opencv/haarcascades/fullbody.xml"
+cascade_path = "/usr/share/opencv/haarcascades/haarcascade_frontface_alt.xml"
 cascade = cv2.CascadeClassifier(cascade_path)
 
 stream = io.BytesIO()
 
-CAMERA_WIDTH = 320
-CAMERA_HEIGHT = 240
+CAMERA_WIDTH = 640
+CAMERA_HEIGHT = 480
 
 camera = picamera.PiCamera()
 camera.resolution = (CAMERA_WIDTH, CAMERA_HEIGHT)
@@ -20,6 +22,7 @@ print "Type Ctrl+C to Stop"
 
 if __name__ == "__main__":
     while True:
+            #picamera to opencv
             camera.capture(stream, format='jpeg')
             data = np.fromstring(stream.getvalue(), dtype=np.uint8)
             image = cv2.imdecode(data, 1)
