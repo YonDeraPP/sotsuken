@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efeed442-ecaa-43d8-91d8-93d580755da5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rt2.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rt.py" afterPath="$PROJECT_DIR$/rt.py" />
     </list>
@@ -42,8 +43,8 @@
       <file leaf-file-name="facedetect.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/facedetect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="33" column="40" lean-forward="false" selection-start-line="32" selection-start-column="2" selection-end-line="33" selection-end-column="107" />
+            <state relative-caret-position="408">
+              <caret line="24" column="59" lean-forward="true" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -51,13 +52,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rt.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rt.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rt.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="16" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+            <state relative-caret-position="85">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rt2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/rt2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="731">
+              <caret line="43" column="26" lean-forward="false" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#46#55#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,6 +93,7 @@
         <option value="$PROJECT_DIR$/sikibetu.py" />
         <option value="$PROJECT_DIR$/facedetect.py" />
         <option value="$PROJECT_DIR$/rt.py" />
+        <option value="$PROJECT_DIR$/rt2.py" />
       </list>
     </option>
   </component>
@@ -262,16 +274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sikibetu.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -282,10 +284,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/facedetect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="40" lean-forward="false" selection-start-line="32" selection-start-column="2" selection-end-line="33" selection-end-column="107" />
+        <state relative-caret-position="408">
+          <caret line="24" column="59" lean-forward="true" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -294,10 +306,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="16" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rt2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="26" lean-forward="false" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#46#55#0" expanded="true" />
           </folding>
         </state>
       </provider>
