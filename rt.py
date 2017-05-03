@@ -23,7 +23,7 @@ if __name__ == "__main__":
         camera.framerate=24
 
 
-    while True:
+        while True:
             #picamera to opencv
             camera.capture(stream, format='jpeg')
             data = np.fromstring(stream.getvalue(), dtype=np.uint8)
