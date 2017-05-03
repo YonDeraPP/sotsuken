@@ -15,7 +15,7 @@ cv2.namedWindow(windowName)
 color = (255,255,255)
 with picamera.PiCamera() as camera:
     camera.resolution = (640, 480)
-    camera.framerate = 48
+    camera.framerate = 12
     stream = io.BytesIO()
 
     while True:
