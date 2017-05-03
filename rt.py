@@ -17,7 +17,7 @@ color = (255, 255, 255)
 if __name__ == "__main__":
     print "Type Ctrl+C to Stop"
     with picamera.PiCamera() as camera:
-        camera.resolution(CAMERA_WIDTH,CAMERA_HEIGHT)
+        camera.resolution=(CAMERA_WIDTH,CAMERA_HEIGHT)
         camera.framerate=24
         stream = io.BytesIO
 
