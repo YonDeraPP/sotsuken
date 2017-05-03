@@ -17,13 +17,14 @@ CAMERA_HEIGHT = 480
 camera = picamera.PiCamera()
 camera.resolution = (CAMERA_WIDTH, CAMERA_HEIGHT)
 color = (255, 255, 255)
+camera.framerate = 24
 
 print "Type Ctrl+C to Stop"
 
 if __name__ == "__main__":
     while True:
             #picamera to opencv
-            camera.capture(stream, format='jpeg')
+            camera.capture(stream, format='jpeg',use_video_port=True)
             data = np.fromstring(stream.getvalue(), dtype=np.uint8)
             image = cv2.imdecode(data, 1)
 
