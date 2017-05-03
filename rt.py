@@ -8,14 +8,13 @@ import numpy as np
 
 cascade_path = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml"
 cascade = cv2.CascadeClassifier(cascade_path)
-
+stream = io.BytesIO
 CAMERA_WIDTH = 640
 CAMERA_HEIGHT = 480
 
 color = (255, 255, 255)
 
 if __name__ == "__main__":
-    stream = io.BytesIO
     print "Type Ctrl+C to Stop"
     with picamera.PiCamera() as camera:
         camera.resolution=(CAMERA_WIDTH,CAMERA_HEIGHT)
@@ -24,7 +23,7 @@ if __name__ == "__main__":
 
     while True:
             #picamera to opencv
-            camera.capture(stream, format="jpeg", use_video_port=True)
+            camera.capture(stream, format='jpeg')
             data = np.fromstring(stream.getvalue(), dtype=np.uint8)
             image = cv2.imdecode(data, 1)
 
