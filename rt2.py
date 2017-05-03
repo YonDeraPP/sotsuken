@@ -1,44 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import io
+import time
 import picamera
 import cv2
-
 import numpy as np
+import io
 
-cascade_path = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml"
-cascade = cv2.CascadeClassifier(cascade_path)
+windowName = 'image'
+cv2.namedWindow(windowName)
 
-stream = io.BytesIO
-
-CAMERA_WIDTH = 640
-CAMERA_HEIGHT = 480
-
-color = (255, 255, 255)
-
-if __name__ == "__main__":
-    print "Type Ctrl+C to Stop"
-    with picamera.PiCamera() as camera:
-        camera.resolution=(CAMERA_WIDTH,CAMERA_HEIGHT)
-        camera.framerate=24
-
+with picamera.PiCamera() as camera:
+    camera.resolution = (640, 480)
+    camera.framerate = 24
+    stream = io.BytesIO()
 
     while True:
-            #picamera to opencv
-            camera.capture(stream, format='jpeg')
-            data = np.fromstring(stream.getvalue(), dtype=np.uint8)
-            image = cv2.imdecode(data, 1)
+        camera.capture(stream, format="jpeg", use_video_port=True)
+        frame = np.fromstring(stream.getvalue(), dtype=np.uint8)
+        stream.seek(0)
+        frame = cv2.imdecode(frame, 1)
 
-            image_gray = cv2.cvtColor(image, cv2.cv.CV_BGR2GRAY)
-            facerect = cascade.detectMultiScale(image_gray, scaleFactor=1.1, minNeighbors=1, minSize=(1, 1))
+        cv2.imshow(windowName, frame)
 
-            image_output = image
-            if len(facerect)>0:
-                for rect in facerect:
-                    cv2.rectangle(image_output, tuple(rect[0:2]), tuple(rect[0:2] + rect[2:4]), color, thickness=2)
-                    print "found"
+        key = cv2.waitKey(33)
+        if key == 1048603:
+            break
 
-
-            cv2.imshow('image',image)
-            cv2.waitKey(16)
-            stream.seek(0)
+cv2.destroyAllWindows()
