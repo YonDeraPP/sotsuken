@@ -15,7 +15,7 @@ cv2.namedWindow(windowName)
 color = (255,255,255)
 with picamera.PiCamera() as camera:
     camera.resolution = (640, 480)
-    camera.framerate = 24
+    camera.framerate = 48
     stream = io.BytesIO()
 
     while True:
@@ -31,7 +31,7 @@ with picamera.PiCamera() as camera:
             for rect in facerect:
                 cv2.rectangle(image_output, tuple(rect[0:2]), tuple(rect[0:2] + rect[2:4]), color, thickness=2)
                 print "found"
-                
+
         cv2.imshow(windowName, frame)
 
         key = cv2.waitKey(33)
