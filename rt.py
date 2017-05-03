@@ -19,7 +19,8 @@ if __name__ == "__main__":
     with picamera.PiCamera() as camera:
         camera.resolution=(CAMERA_WIDTH,CAMERA_HEIGHT)
         camera.framerate=24
-        stream = io.BytesIO
+
+    stream = io.BytesIO
 
     while True:
             #picamera to opencv
