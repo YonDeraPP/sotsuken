@@ -28,9 +28,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     facerect = cascade.detectMultiScale(image_gray, scaleFactor=1.1, minNeighbors=1, minSize=(1, 1))
     image_output = image
     if len(facerect) > 0:
-        for rect in facerect:
-            cv2.rectangle(image_output, tuple(rect[0:2]), tuple(rect[0:2] + rect[2:4]), color, thickness=2)
-            print "found"
+        print "found"
     # show the frame
     cv2.imshow("Frame", image)
     key = cv2.waitKey(1) & 0xFF
