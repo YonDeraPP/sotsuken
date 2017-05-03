@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
     while True:
             #picamera to opencv
-            camera.capture(stream, format="jpeg",use_video_port=True)
+            camera.capture(stream, format="jpeg")
             data = np.fromstring(stream.getvalue(), dtype=np.uint8)
             image = cv2.imdecode(data, 1)
 
