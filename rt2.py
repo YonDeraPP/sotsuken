@@ -11,7 +11,7 @@ cascade = cv2.CascadeClassifier(cascade_path)
 
 windowName = 'image'
 cv2.namedWindow(windowName)
-
+switch = True
 color = (255,255,255)
 with picamera.PiCamera() as camera:
     camera.resolution = (640, 480)
@@ -27,10 +27,11 @@ with picamera.PiCamera() as camera:
         image_gray = cv2.cvtColor(frame, cv2.cv.CV_BGR2GRAY)
         facerect = cascade.detectMultiScale(image_gray, scaleFactor=1.1, minNeighbors=1, minSize=(1, 1))
         image_output = frame
-        if len(facerect) > 0:
+        if len(facerect) > 0 and switch == True:
             for rect in facerect:
                 cv2.rectangle(image_output, tuple(rect[0:2]), tuple(rect[0:2] + rect[2:4]), color, thickness=2)
                 print "found"
+            switch = False
 
         cv2.imshow(windowName, frame)
 
