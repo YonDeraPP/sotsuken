@@ -18,8 +18,6 @@ def capture(mirror=True,size=None):
             frame = cv2.imdecode(frame, 1)
 
             cv2.imshow('capture',frame)
-            k = cv2.waitkey(1)
-            if k == 27:
-                break
+  
 
         cv2.destroyAllWindows()
