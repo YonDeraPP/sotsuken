@@ -28,6 +28,9 @@ def main():
         if len(facerect)>0:
             print 'detected'
 
+        cv2.imshow('image',image)
+        stream.seek(0)
+
 
 if __name__ == '__main__':
     main()
