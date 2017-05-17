@@ -43,9 +43,9 @@ def main():
         facerect = cascade.detectMultiScale(image_gray, scaleFactor=1.1, minNeighbors=1, minSize=(1, 1))
 
         if len(facerect)>0:
-            print 'detected'
+            send_message()
             break
-        
+
         stream.seek(0)
 
     print "send massage"
