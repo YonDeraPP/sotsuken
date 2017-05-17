@@ -81,7 +81,7 @@ def send(from_addr, to_addrs, msg):
     smtpobj.close()
 
 def send_message():
-    to_addr = "yohei.onodera,5x@stu.hosei.ac.jp"
+    to_addr = "yohei.onodera.5x@stu.hosei.ac.jp"
 
     subject = "subject"
     body = "body"
