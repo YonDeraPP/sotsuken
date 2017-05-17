@@ -20,7 +20,7 @@ def main():
     while True:
         camera.capture(stream,format='jpeg')
         data = np.fromstring(stream.getvalue(),dtype=np.uint8)
-        image = cv2.imread(data,1)
+        image = cv2.imdecode(data,1)
 
         image_gray = cv2.cvtColor(image, cv2.cv.CV_BGR2GRAY)
         facerect = cascade.detectMultiScale(image_gray, scaleFactor=1.1, minNeighbors=1, minSize=(1, 1))
