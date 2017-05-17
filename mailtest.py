@@ -29,7 +29,7 @@ camera = picamera.PiCamera()
 camera.resolution = (CAMERA_WIDTH, CAMERA_HEIGHT)
 
 ADDRESS = "deraderapyon"
-PASSWARD = "dera0816"
+PASSWARD = "dera0721"
 SMTP = "smtp.gmail.com"
 PORT = 587
 
