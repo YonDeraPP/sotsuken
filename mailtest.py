@@ -4,7 +4,7 @@ import io
 import numpy as np
 import cv2
 
-stream = io.BytesIO
+stream = io.BytesIO()
 
 cascade_path = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml"
 cascade = cv2.CascadeClassifier(cascade_path)
