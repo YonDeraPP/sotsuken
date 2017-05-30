@@ -22,6 +22,7 @@ camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
 def Capture():
     camera.capture(stream, format='jpeg')
     data = stream.getvalue()
+    stream.seek(0ｓ)
     return data
 
 class TCPHandler(SocketServer.BaseRequestHandler):
