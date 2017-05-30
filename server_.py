@@ -11,7 +11,7 @@ import picamera
 CAMERA_WIDTH = 320
 CAMERA_HEIGHT = 240
 
-stream = io.BytesIO
+stream = io.BytesIO()
 
 camera = picamera.PiCamera()
 camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
