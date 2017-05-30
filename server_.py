@@ -24,7 +24,6 @@ def capture():
     return data
 
 class TCPHandler(SocketServer.BaseRequestHandler):
-    capture = ' '
     def handle(self):
         self.data = self.request.recv(1024).strip()
         self.request.send(capture())
@@ -34,7 +33,6 @@ class TCPHandler(SocketServer.BaseRequestHandler):
 if __name__ == '__main__':
     SocketServer.TCPServer.allow_reuse_address = True
     server = SocketServer.TCPServer((HOST, PORT), TCPHandler)
-    server.capture = capture
 
     print "start server"
 
