@@ -14,7 +14,7 @@ CAMERA_HEIGHT = 240
 stream = io.BytesIO
 
 camera = picamera.PiCamera()
-camera.resolution(CAMERA_WIDTH,CAMERA_HEIGHT)
+camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
 
 def capture():
     camera.capture(stream,format='jpeg')
