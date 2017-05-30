@@ -8,11 +8,13 @@ import sys
 
 import io
 import picamera
+CAMERA_WIDTH = 320
+CAMERA_HEIGHT = 240
 
 stream = io.BytesIO
 
 camera = picamera.PiCamera()
-camera.resolution(320,240)
+camera.resolution(CAMERA_WIDTH,CAMERA_HEIGHT)
 
 def capture():
     camera.capture(stream,format='jpeg')
