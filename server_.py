@@ -18,7 +18,6 @@ camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
 
 def capture():
     camera.capture(stream,format='jpeg')
-    data = np.fromstring(stream.getvalue(),dtype=np.uint8)
     return type(data)
 
 if __name__ == '__main__':
