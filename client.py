@@ -15,7 +15,7 @@ PORT = 8000
 
 stream = io.BytesIO()
 
-camera = picamera.PiCamara()
+camera = picamera.PiCamera()
 camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
 
 def Capture():
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     print "Connected to ",HOST
     while True:
         s.send(Capture())
-        i++
+        i= i+1
 
         if i == 30:
             break
