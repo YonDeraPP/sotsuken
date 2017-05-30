@@ -15,8 +15,11 @@ HOST = '192.168.10.54'
 PORT = 8000
 
 def getimage(data):
-        narray = np.fromstring(data,dtype='uint8')
-        return cv2.imdecode(narray,1)
+        narray = np.fromstring(data,dtype=np.uint8)
+        
+        img = cv2.imdecode(narray,1)
+        
+        return narray
 
 if __name__ == '__main__':
         s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -26,9 +29,11 @@ if __name__ == '__main__':
         print "Connected by " , addr
 
         while True:
-                data = soc.recv(1024)
+                data = soc.recv(320*240)
                 img = getimage(data)
-                print data
+                pic = cv2.imdecode(img,1)
+                cv2.imshow("capture",pic)
+
                 if cv2.waitKey(100) & 0xFF == ord('q'):
                         break
                 

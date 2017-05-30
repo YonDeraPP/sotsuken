@@ -22,6 +22,7 @@ def Capture():
     camera.capture(stream, format = 'jpeg')
     data = stream.getvalue()
     stream.seek(0)
+    print len(data)
     return data
 
 
@@ -33,7 +34,7 @@ if __name__ == '__main__':
     print "Connected to ",HOST
     while True:
         s.send(Capture())
-        i= i+1
+        i = i+1
 
         if i == 30:
             break
