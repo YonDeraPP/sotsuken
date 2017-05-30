@@ -19,14 +19,17 @@ stream = io.BytesIO()
 camera = picamera.PiCamera()
 camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
 
-def capture():
+def Capture():
+    camera.capture(stream, format='jpeg')
     data = stream.getvalue()
     return data
 
 class TCPHandler(SocketServer.BaseRequestHandler):
     def handle(self):
         self.data = self.request.recv(1024).strip()
-        self.request.send(capture())
+        jpegstring = Capture()
+        print jpegstring
+        self.request.send(jpegstring)
 
 
 
