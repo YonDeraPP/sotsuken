@@ -19,22 +19,23 @@ stream = io.BytesIO()
 camera = picamera.PiCamera()
 camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
 
-def capture():
+def Capture():
+    camera.capture(stream, format='jpeg')
     data = stream.getvalue()
+    stream.seek(0)
     return data
 
 class TCPHandler(SocketServer.BaseRequestHandler):
-    capture = ' '
     def handle(self):
         self.data = self.request.recv(1024).strip()
-        self.request.send(capture())
+        jpegstring = Capture()
+        self.request.send(jpegstring)
 
 
 
 if __name__ == '__main__':
     SocketServer.TCPServer.allow_reuse_address = True
     server = SocketServer.TCPServer((HOST, PORT), TCPHandler)
-    server.capture = capture
 
     print "start server"
 
