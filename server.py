@@ -28,7 +28,7 @@ if __name__ == '__main__':
         while True:
                 data = soc.recv(1024)
                 img = getimage(data)
-                cv2.imshow('Capture',img)
+                print img
                 if cv2.waitKey(100) & 0xFF == ord('q'):
                         break
                 
