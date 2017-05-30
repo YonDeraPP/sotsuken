@@ -1,18 +1,35 @@
+#-*-coding:utf-8-*-
 import io
 import picamera
 import cv2
 
 import numpy as np
 
+import socket
+
 stream = io.BytesIO()
 
 CAMERA_WIDTH = 320
 CAMERA_HEIGHT = 240
 
-with picamera.PiCamera() as camera:
-        camera.resolution = (CAMERA_WIDTH, CAMERA_HEIGHT)
-        camera.capture(stream, format='jpeg')
-data = np.fromstring(stream.getvalue(), dtype=np.uint8)
-image = cv2.imdecode(data, 1)
-cv2.imshow('image',image)
-cv2.waitKey(0)
+HOST = '192.168.10.54'
+PORT = 8000
+
+def getimage(data):
+        narray = np.fromstring(data,dtype='uint8')
+        return cv2.imdecode(narray,1)
+
+if __name__ == '__main__':
+        s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        s.bind((HOST,PORT))
+        s.listen(1)
+        soc, addr = s.accept()
+        print "Connected by " , addr
+
+        while True:
+                data = soc.recv(1024)
+                img = getimage(data)
+                cv2.imshow('Capture',img)
+                if cv2.waitKey(100) & 0xFF == ord('q'):
+                        break
+                
