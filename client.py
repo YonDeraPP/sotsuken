@@ -1,7 +1,6 @@
 #-*-coding:utf-8-*-
 
 import socket
-import cv2
 import numpy as np
 import io
 
@@ -33,13 +32,6 @@ if __name__ == '__main__':
     print "Connected to ",HOST
     while True:
         s.send(Capture())
-        data=s.recv(1024)
-        print data
         
-        i = i+1
-
-        if i == 30:
-            break
-
     s.close()
     

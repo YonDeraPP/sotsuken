@@ -1,7 +1,6 @@
 #-*-coding:utf-8-*-
 
 import SocketServer
-import cv2
 import numpy  as np
 import socket
 import sys
