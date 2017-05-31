@@ -40,14 +40,17 @@ if __name__ == '__main__':
                 s.listen(1)
                 soc, addr = s.accept()
                 print "Connected by " , addr
-                
+                soc.send("HELLO\n")
                 buf = ' '
                 recvlen=100
-                while recvlen>0:
+                while recvlen>50:
                     receivedstr=soc.recv(1024*8)
                     recvlen=len(receivedstr)
                     buf += receivedstr
+                    print recvlen
                 soc.close()
+                
+                print "socket closed"
                 
                 narray = np.fromstring(buf,dtype=np.uint8)
                 img = cv2.imdecode(narray,1)

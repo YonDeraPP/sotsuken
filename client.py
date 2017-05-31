@@ -31,6 +31,7 @@ if __name__ == '__main__':
     i = 0
     print "Connected to ",HOST
     while True:
+        data = s.recv(1024).strip()
         s.send(Capture())
         
     s.close()
