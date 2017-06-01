@@ -9,7 +9,7 @@ if __name__ == "__main__":
     cv.NamedWindow("serverCAM", 1)  # 表示するウィンドウ作成
 
     udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    udp.bind(("192.168.10.52", 8000))
+    udp.bind(("192.168.10.54", 8000))
 
     buff = 1024
     while True:
