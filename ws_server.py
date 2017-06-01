@@ -24,7 +24,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
     def on_message(self, message):
         print "on_message"
         for client in cl:
-            print massage[:4]
+            print message[:4]
             data = np.fromstring(message.decode('base64'),dtype=np.uint8)
             img = cv2.imdecode(data,1)
             image_gray = cv2.cvtColor(img, cv2.cv.CV_BGR2GRAY)
