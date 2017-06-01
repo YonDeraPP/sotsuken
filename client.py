@@ -20,6 +20,7 @@ camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
 def Capture():
     camera.capture(stream, format = 'jpeg')
     data = stream.getvalue()
+    print len(data)
     stream.seek(0)
     return data
 
