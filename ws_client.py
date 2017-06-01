@@ -32,5 +32,5 @@ if __name__ == '__main__':
     narray = np.fromstring(dataa,dtype=np.uint8)
     img = cv2.imdecode(narray,1)
     cv2.imshow("capture",img)
-
+    cv2.waitKey(0)
     ws.close()

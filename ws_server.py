@@ -14,13 +14,11 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         print "open"
         if self not in cl:
             cl.append(self)
-            print "append"
 
     # 処理
     def on_message(self, message):
         print "on_message"
         for client in cl:
-            print message
             # クライアントへメッセージを送信
             client.write_message(message)
 
