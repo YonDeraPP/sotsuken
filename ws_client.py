@@ -5,6 +5,7 @@ import sys
 import io
 import picamera
 import numpy as np
+import base64
 
 import cv2
 CAMERA_WIDTH = 320
@@ -25,8 +26,8 @@ if __name__ == '__main__':
     data = Capture()
     ws = create_connection("ws://localhost:8000/websocket")
     #data = "hello"
-    print data[:10]
-    ws.send(data[:10])
+    print data[:10].encode('base64')
+    ws.send(data[:10].encode('base64'))
 
     ##data = ws.recv()
     #narray = np.fromstring(data,dtype=np.uint8)
