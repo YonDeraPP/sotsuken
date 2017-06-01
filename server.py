@@ -13,9 +13,9 @@ if __name__ == "__main__":
 
     buff = 1024
     while True:
-        jpgstring, addr = udp.recvfrom(buff * 64)  # 送られてくるデータが大きいので一度に受け取るデータ量を大きく設定
-        narray = numpy.fromstring(jpgstring, dtype="uint8")  # string型からnumpyを用いuint8に戻す
-        decimg = cv2.imdecode(narray, 1)  # uint8のデータを画像データに戻す
+        jpgstring, addr = udp.recvfrom(buff * 64)
+        narray = numpy.fromstring(jpgstring, dtype="uint8")
+        decimg = cv2.imdecode(narray, 1) 
 
         cv2.imshow("serverCAM", decimg)
         if cv.WaitKey(10) == 27:
