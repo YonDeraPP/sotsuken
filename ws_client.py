@@ -24,8 +24,9 @@ def Capture():
 
 if __name__ == '__main__':
     ws = create_connection("ws://localhost:8000/websocket")
-
-    ws.send(Capture())
+    data = Capture()
+    print len(data)
+    ws.send(data)
 
     ##data = ws.recv()
     #narray = np.fromstring(data,dtype=np.uint8)
