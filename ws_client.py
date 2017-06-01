@@ -28,9 +28,5 @@ if __name__ == '__main__':
     #data = "hello"
     ws.send(data.encode('base64'))
 
-    dataa = ws.recv().decode('base64')
-    narray = np.fromstring(dataa,dtype=np.uint8)
-    img = cv2.imdecode(narray,1)
-    cv2.imshow("capture",img)
-    cv2.waitKey(0)
+    print ws.recv()
     ws.close()
