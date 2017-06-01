@@ -6,7 +6,7 @@ import tornado.websocket
 import cv2
 import numpy as np
 
-cascade_path = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml"
+cascade_path = "/usr/local/Cellar/opencv/2.4.13/share/OpenCV/haarcascades/haarcascade_frontalface_alt.xml"
 cascade = cv2.CascadeClassifier(cascade_path)
 
 cl = []
