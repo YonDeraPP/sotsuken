@@ -25,14 +25,11 @@ def Capture():
 
 
 if __name__ == '__main__':
-    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    s.connect((HOST,PORT))
+    udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-    i = 0
-    print "Connected to ",HOST
     while True:
-        data = s.recv(1024).strip()
-        s.send(Capture())
-        
-    s.close()
-    
+        jpegstring = Capture()
+        udp.sendto(jpegstring, (HOST,PORT))
+
+
+    udp.close()

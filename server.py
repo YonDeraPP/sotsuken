@@ -1,62 +1,25 @@
 #-*-coding:utf-8-*-
-import io
+
+import cv2.cv as cv
 import cv2
-
-import numpy as np
-
+import numpy
 import socket
 
-stream = io.BytesIO()
+if __name__ == "__main__":
+    cv.NamedWindow("serverCAM", 1)  # 表示するウィンドウ作成
 
-CAMERA_WIDTH = 320
-CAMERA_HEIGHT = 240
+    udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    udp.bind(("192.168.10.52", 8000))
 
-HOST = '192.168.10.54'
-PORT = 8000
+    buff = 1024
+    while True:
+        jpgstring, addr = udp.recvfrom(buff * 64)  # 送られてくるデータが大きいので一度に受け取るデータ量を大きく設定
+        narray = numpy.fromstring(jpgstring, dtype="uint8")  # string型からnumpyを用いuint8に戻す
+        decimg = cv2.imdecode(narray, 1)  # uint8のデータを画像データに戻す
 
-def getimage():
-        soc = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        soc.connect(('192.168.10.46',8000))
-        soc.send('HELLO\n')
-        buf = ' '
-        recvlen = 100
-        while recvlen>0:
-            receivedstr=soc.recv(1024*8)
-            recvlen=len(receivedstr)
-            buf +=receivedstr
-        soc.close()
-        
-        narray = np.fromstring(buf,dtype=np.uint8)
-        
-        img = cv2.imdecode(narray,1)
-        
-        return img
+        cv2.imshow("serverCAM", decimg)
+        if cv.WaitKey(10) == 27:
+            break
 
-if __name__ == '__main__':
-        s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        s.bind((HOST,PORT))
-
-        while True:
-                s.listen(1)
-                soc, addr = s.accept()
-                print "Connected by " , addr
-                soc.send("HELLO\n")
-                buf = ' '
-                recvlen=100
-                while recvlen>50:
-                    receivedstr=soc.recv(1024*8)
-                    recvlen=len(receivedstr)
-                    buf += receivedstr
-                    print recvlen
-                soc.close()
-                
-                print "socket closed"
-                
-                narray = np.fromstring(buf,dtype=np.uint8)
-                img = cv2.imdecode(narray,1)
-                
-                cv2.imshow("capture",img)
-
-                if cv2.waitKey(100) & 0xFF == ord('q'):
-                        break
-                
+    cv.DestroyAllWindows()
+    udp.close()
