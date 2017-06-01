@@ -26,7 +26,7 @@ if __name__ == '__main__':
     ws = create_connection("ws://localhost:8000/websocket")
     #data = "hello"
     print type(data)
-    ws.send(data)
+    ws.send(data[:10])
 
     ##data = ws.recv()
     #narray = np.fromstring(data,dtype=np.uint8)
