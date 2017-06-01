@@ -23,7 +23,7 @@ def Capture():
 
 if __name__ == '__main__':
     ws = create_connection("ws://localhost:8000/websocket")
-    data = Capture()
+    data = "hello"
     print type(data)
     ws.send(data)
 
