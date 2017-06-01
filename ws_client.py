@@ -25,11 +25,12 @@ def Capture():
 if __name__ == '__main__':
     ws = create_connection("ws://localhost:8000/websocket")
 
-    ws.send(Capture())
+    ws.send("Hello")
 
-    data = ws.recv()
-    narray = np.fromstring(data,dtype=np.uint8)
-    img = cv2.imdecode(narray,1)
-    cv2.imshow("capture",img)
+    ##data = ws.recv()
+    #narray = np.fromstring(data,dtype=np.uint8)
+    #img = cv2.imdecode(narray,1)
+   # cv2.imshow("capture",img)
+    print ws.recv()
 
     ws.close()
