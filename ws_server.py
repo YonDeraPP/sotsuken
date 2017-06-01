@@ -31,8 +31,10 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             facerect = cascade.detectMultiScale(image_gray, scaleFactor=1.1, minNeighbors=1,minSize=(1,1))
             if len(facerect) > 0:
                 client.write_message("found!")
+                print "found"
             else:
                 client.write_message("Not found!")
+                print "Not found"
 
     # websockeクローズ
     def on_close(self):
