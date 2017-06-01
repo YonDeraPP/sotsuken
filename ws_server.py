@@ -14,6 +14,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         print "open"
         if self not in cl:
             cl.append(self)
+            print "append"
 
     # 処理
     def on_message(self, message):
