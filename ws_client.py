@@ -26,6 +26,7 @@ if __name__ == '__main__':
     data = Capture()
     ws = create_connection("ws://192.168.10.54:8000/websocket")
     #data = "hello"
+    print data[:4].decode('base64')
     ws.send(data.encode('base64'))
 
     print ws.recv()
