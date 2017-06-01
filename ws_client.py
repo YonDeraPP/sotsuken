@@ -25,7 +25,7 @@ if __name__ == '__main__':
     data = Capture()
     ws = create_connection("ws://localhost:8000/websocket")
     #data = "hello"
-    print type(data)
+    print data[:10]
     ws.send(data[:10])
 
     ##data = ws.recv()
