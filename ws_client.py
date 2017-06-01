@@ -26,13 +26,11 @@ if __name__ == '__main__':
     data = Capture()
     ws = create_connection("ws://localhost:8000/websocket")
     #data = "hello"
-    print data.encode('base64')
     ws.send(data.encode('base64'))
 
-    ##data = ws.recv()
-    #narray = np.fromstring(data,dtype=np.uint8)
-    #img = cv2.imdecode(narray,1)
-   # cv2.imshow("capture",img)
-    print ws.recv()
+    dataa = ws.recv()
+    narray = np.fromstring(dataa,dtype=np.uint8)
+    img = cv2.imdecode(narray,1)
+    cv2.imshow("capture",img)
 
     ws.close()
