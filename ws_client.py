@@ -26,8 +26,8 @@ if __name__ == '__main__':
     data = Capture()
     ws = create_connection("ws://localhost:8000/websocket")
     #data = "hello"
-    print data[:10].encode('base64')
-    ws.send(data[:10].encode('base64'))
+    print data.encode('base64')
+    ws.send(data.encode('base64'))
 
     ##data = ws.recv()
     #narray = np.fromstring(data,dtype=np.uint8)
