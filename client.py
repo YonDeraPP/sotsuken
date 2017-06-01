@@ -10,7 +10,7 @@ CAMERA_WIDTH = 320
 CAMERA_HEIGHT = 240
 
 HOST = '192.168.10.54'
-PORT = 8000
+PORT = 12345
 
 stream = io.BytesIO()
 
