@@ -20,7 +20,7 @@ def Capture():
     return data
 
 
-url = 'http://192.168.10.54/'
+url = 'http://192.168.10.54:5000/'
 files = {'upload':base64.b64encode(Capture().encode('utf-8'))}
 
 res = requests.post(url, json = json.dumps(files))
