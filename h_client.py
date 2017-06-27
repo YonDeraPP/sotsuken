@@ -21,8 +21,8 @@ def Capture():
 
 
 url = 'http://192.168.10.54:5000/'
-files = base64.b64encode(Capture())
+files = {'upload':base64.b64encode(Capture())[:8]}
 
-res = requests.post(url, data = files[:8])
+res = requests.post(url, data = files)
 
 print(res)
