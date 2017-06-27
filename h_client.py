@@ -14,15 +14,14 @@ camera = picamera.PiCamera()
 camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
 
 def Capture():
-    camera.capture(stream, format='jpeg')
-    data = stream.getvalue()
-    stream.seek(0)
+    camera.capture('image.jpg')
+    data = open("image.jpg","rb")
     return data
 
 
 url = 'http://192.168.10.54:5000/'
-files = {'upload':base64.b64encode(Capture())[:8]}
+files = {'upload':data}
 
-res = requests.post(url, data = files)
+res = requests.post(url, files = files)
 
 print(res)

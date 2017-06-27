@@ -10,7 +10,8 @@ app = Flask(__name__)
 @app.route('/',methods=['POST'])
 def index():
     if request.method == 'POST':
-        f = request.data
+        f = request.files
+        print(f)
         
         
     return flask.jsonify(res='ok')
