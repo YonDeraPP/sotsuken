@@ -20,6 +20,7 @@ def Capture():
 
 
 url = 'http://192.168.10.54:5000/'
+data = Capture()
 files = {'upload':data}
 
 res = requests.post(url, files = files)
