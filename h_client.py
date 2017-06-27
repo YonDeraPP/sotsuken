@@ -23,6 +23,6 @@ def Capture():
 url = 'http://192.168.10.54:5000/'
 files = {'upload':base64.b64encode(Capture())}
 
-res = requests.post(url, json = json.dumps(files))
+res = requests.post(url, data = files)
 
 print(res)
