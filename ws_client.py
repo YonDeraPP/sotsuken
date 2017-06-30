@@ -24,11 +24,12 @@ def Capture():
 
 if __name__ == '__main__':
     ws = create_connection("ws://192.168.10.54:8000/websocket")
+    print("Connection is started")
     #data = "hello"
     while True:
         ws.send(Capture().encode('base64'))
         ans = ws.recv()
-        print ans
+        print(ans)
         if ans == "found!":
             break
 
