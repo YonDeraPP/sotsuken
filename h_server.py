@@ -24,8 +24,18 @@ Cascade = cv2.CascadeClassifier(cascade_path)
 class sendGmail:
     username, password = '14514', '****'
 
-    def __init__(self, to, sub, body, mime, attach_file):
+    def __init__(self, to, sub, body, mime=None, attach_file=None):
         host, port = 'smtp.gmail.com', 465
+        to = to
+        sub = sub
+        bosy = body
+        mime = mime
+        attach_file = attach_file
+
+        msg = self.create(to, sub, body, mime, attach_file)
+        self.send(to, msg)
+
+    def create(self, to, sub, body , mime=None, attach_file=None):
         msg = MIMEMultipart()
         body = MIMEText(body)
         msg['Subject'] = sub
@@ -33,21 +43,26 @@ class sendGmail:
         msg['To'] = to
         msg.attach(body)
 
-        attachment = MIMEBase(mime['type'], mime['subtype'])
-        file = open(attach_file['path'],'rb')
-        attachment.set_payload(file.read())
-        file.close()
-        encoders.encode_base64(attachment)
-        msg.attach(attachment)
-        attachment.add_header("Content-Disposition","attachment", filename=attach_file['name'])
+        if mime != None and attach_file != None:
+            attachment = MIMEBase(mime['type'],mime['subtype'])
+            file = open(attach_file['path'], 'rb')
+            attachment.set_payload(file.read())
+            file.close()
+            encoders.encode_base64(attachment)
+            msg.attach(attachment)
+            attachment.add_header("Content-Disposition", "attachment", filename=attach_file['name'])
 
-        smtp = smtplib.SMTP_SSL(host,port)
+        return msg
+
+    def send(self, to, msg):
+        smtp = smtplib.SMTP_SSL(self.host,self.port)
         smtp.ehlo()
         smtp.login(self.username, self.password)
         smtp.mail(self.username)
-        smtp.rcpt(to)
+        smtp.rcpt(self.to)
         smtp.data(msg.as_string())
         smtp.quit()
+
 
 @app.route('/',methods=['POST'])
 def index():
