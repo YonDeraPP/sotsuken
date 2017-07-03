@@ -19,7 +19,7 @@ def Capture():
     return data
 
 
-url = 'http://192.168.10.63:5000/'
+url = 'http://192.168.10.63:8000/'
 data = Capture()
 files = {'upload':data}
 
