@@ -13,6 +13,8 @@ stream = io.BytesIO()
 
 camera = picamera.PiCamera()
 camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.IN)
 
 def Capture():
     camera.capture('image.jpg')
