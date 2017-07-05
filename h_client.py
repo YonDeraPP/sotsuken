@@ -5,6 +5,7 @@ import json
 import picamera
 import io
 import base64
+import RPi.GPIO as GPIO
 
 CAMERA_WIDTH = 320
 CAMERA_HEIGHT = 240
@@ -20,9 +21,14 @@ def Capture():
 
 
 url = 'http://192.168.10.63:8000/'
-data = Capture()
-files = {'upload':data}
 
-res = requests.post(url, files = files)
-
-print(res)
+if __name__ == '__main__':
+    try:
+        while True:
+            if GPIO.input(18):
+                data = Capture()
+                files = {'upload':data}
+                res = requests.post(url, files = files)
+                print(res)
+    except KeyboardInterrupt:
+        pass
