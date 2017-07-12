@@ -6,8 +6,8 @@ import picamera
 import io
 import base64
 
-CAMERA_WIDTH = 320
-CAMERA_HEIGHT = 240
+CAMERA_WIDTH = 640
+CAMERA_HEIGHT = 480
 stream = io.BytesIO()
 
 camera = picamera.PiCamera()
