@@ -15,10 +15,12 @@ from email import encoders
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 
+import datetime
+import pymongo
+
+import datetime
 
 app = Flask(__name__)
-
-
 
 class sendGmail:
     jsonData = json.load(open('address.json', 'r'))
@@ -33,7 +35,7 @@ class sendGmail:
         attach_file = attach_file
 
         msg = self.create(to, sub, body, mime, attach_file)
-        print('create ok')
+
         self.send(host, port ,to , msg)
 
     def create(self, to, sub, body , mime=None, attach_file=None):
@@ -52,38 +54,39 @@ class sendGmail:
             encoders.encode_base64(attachment)
             msg.attach(attachment)
             attachment.add_header("Content-Disposition", "attachment", filename=attach_file['name'])
-        print('create ok')
+
         return msg
 
     def send(self,host, port, to, msg):
         smtp = smtplib.SMTP_SSL(host,port)
-        print('smtp ok')
+
         smtp.ehlo()
-        print('ehlo ok')
+
         smtp.login(self.username, self.password)
-        print('login ok')
+
         smtp.mail(self.username)
         smtp.rcpt(to)
         smtp.data(msg.as_string())
         smtp.quit()
 
 class bodyDetect:
-    cascade_path = "/usr/local/Cellar/opencv/2.4.13/share/OpenCV/haarcascades/haarcascade_frontalface_alt.xml"
+    cascade_path = 'C:\opencv-3.2.0\sources\data\haarcascades\haarcascade_frontalface_default.xml'
     Cascade = cv2.CascadeClassifier(cascade_path)
     color = (255, 0, 0)
     def __init__(self, img_src):
         self.src = cv2.imread(img_src, 1)
         self.result = self.src
-        print('init')
+
         #self.detect()
 
     def rectangle(self):
         img_gray = cv2.cvtColor(self.src, cv2.COLOR_BGR2GRAY)
-        print('image gray')
+
         cv2.imwrite('./gray.jpg',img_gray)
         faces = self.Cascade.detectMultiScale(img_gray, scaleFactor=1.1, minNeighbors=1, minSize=(100, 100))
+
+
         ans = faces
-        print('yarimasunele')
         if len(faces) > 0:
             print('found')
             for face in faces:
@@ -91,29 +94,63 @@ class bodyDetect:
                 length = tuple(face[0:2] + face[2:4])
                 cv2.rectangle(self.result, coordinates, length, self.color, thickness = 3)
 
-        cv2.imwrite('./result.jpg', self.result)
+            cv2.imwrite('./result.jpg', self.result)
+            print(ans)
+            return len(ans)
+        else:
+            return 0
 
-        return len(ans)
+
 
 @app.route('/',methods=['POST'])
 def index():
     if request.method == 'POST':
-        f = request.files['upload']
-        f.save("./"+f.filename)
+        if request.files:
+            f = request.files['upload']
+            #日付を取得(Y/m/D/H/M)
+            today = datetime.datetime.today()
+            day = "./photo/" + today.strftime("%Y%m%d-%H%M") + ".jpeg"
+            f.save(day)
 
-        pic = bodyDetect('./image.jpg')
-        print('save')
-        if pic.rectangle() > 0:
-            to = 'fji810official@gmail.com'
-            sub = 'Python'
-            body = '114514'
-            mime = {'type':'image', 'subtype':'jpeg'}
-            attach_file={'name':'result.jpg', 'path':'./result.jpg'}
-            sendGmail(to, sub, body,mime,attach_file)
-            print('send email')
-            print('To {0}   Sub {1} Body {2}'.format(to, sub, body))
-                
+            #DBを開く
+            client = pymongo.MongoClient("localhost", 27017)
+            db = client.testDB
+            co = db.testCollection
+
+            pic = bodyDetect(day)
+
+            if pic.rectangle() > 0:
+                to = 'fji810official@gmail.com'
+                sub = 'Python'
+                body = '114514'
+                mime = {'type':'image', 'subtype':'jpeg'}
+                attach_file={'name':'result.jpg', 'path':'./result.jpg'}
+                sendGmail(to, sub, body,mime,attach_file)
+                print('send email')
+                print('To {0}   Sub {1} Body {2}'.format(to, sub, body))
+
+                #顔を検知できればdetactをTrueにして登録
+                co.insert_one({"path": day, "year": today.year, "month": today.month, "day": today.day,
+                               "time": today.strftime("%H%M"), "hour": today.hour, "min": today.minute, "detect":"True"})
+                return("send email")
+
+            else:
+                print("not send email")
+                #顔を検知できなければdetectをFalseにして登録
+                co.insert_one({"path": day, "year": today.year, "month": today.month, "day": today.day,
+                               "time": today.strftime("%H%M"), "hour": today.hour, "min": today.minute, "detect":"False"})
+                return "not send email"
+        else:
+            data = request.data
+            print('youtube')
+            return "hello Youtube"
+
+@app.route('/empty', methods = ['GET'])
+def empty():
+    print(datetime.datetime.today().strftime("%Y%m%d-%H%M"))
+    return "hello"
+
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=8000)
