@@ -16,8 +16,9 @@ camera.resolution = (CAMERA_WIDTH,CAMERA_HEIGHT)
 app = Flask(__name__)
 
 def Capture():
-    camera.capture('image.jpg')
-    data = open("image.jpg","rb")
+    today = datetime.datetime.today()
+    camera.capture(today.strftime("%Y%m%d-%H%M")+'.jpg')
+    data = open(today.strftime("%Y%m%d-%H%M")+'.jpg',"rb")
     return data
 
 
@@ -27,12 +28,6 @@ url = 'http://192.168.10.63:8000/'
 def index():
     print("hello")
     data = Capture()
-    files = {'upload': data}
-    res = requests.post(url, files=files)
-    print(res)
-    url2 = url + 'empty'
-    res = requests.get(url2)
-    print(res)
     return 'hello'
 
 @app.route('/empty')
