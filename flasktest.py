@@ -36,4 +36,4 @@ def empty():
     res = requests.post(url,data = json.dumps(data))
 
 
-app.run(host="0.0.0.0")
+app.run(host="0.0.0.0",port = 5000)
