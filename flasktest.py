@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 def Capture():
     today = datetime.datetime.today()
-    camera.capture(today.strftime("%Y%m%d-%H%M")+'.jpg')
+    camera.capture('image_.jpg')
     return 'hello'
 
 
