@@ -18,8 +18,7 @@ app = Flask(__name__)
 def Capture():
     today = datetime.datetime.today()
     camera.capture(today.strftime("%Y%m%d-%H%M")+'.jpg')
-    data = open(today.strftime("%Y%m%d-%H%M")+'.jpg',"rb")
-    return data
+    return 'hello'
 
 
 url = 'http://192.168.10.63:8000/'
@@ -27,8 +26,7 @@ url = 'http://192.168.10.63:8000/'
 @app.route('/')
 def index():
     print("hello")
-    data = Capture()
-    return 'hello'
+    return Capture()
 
 @app.route('/empty')
 def empty():
