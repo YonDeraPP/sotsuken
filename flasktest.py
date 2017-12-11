@@ -40,5 +40,5 @@ def empty():
     data = {'message':datetime.datetime.today()}
     res = requests.post(url,data = json.dumps(data))
 
-
-app.run(host="0.0.0.0")
+if __name__ == '__main__':
+    app.run(host="0.0.0.0")

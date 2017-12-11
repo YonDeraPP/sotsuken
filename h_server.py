@@ -150,7 +150,16 @@ def empty():
     print(datetime.datetime.today().strftime("%Y%m%d-%H%M"))
     return "hello"
 
+@app.route('/date/<int:y>/<int:m>/<int:d>')
+def find(y,m,d):
+    client = pymongo.MongoClient("localhost", 27017)
+    db = client.testDB
+    co = db.testCollection
+    n = 0
+    for i in co.find({'year':y , 'month':m, 'day':d}):
+        n = n + 1
 
+    return str(n)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
